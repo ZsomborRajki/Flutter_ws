@@ -88,3 +88,38 @@ struct SampleAppPage: View {
         }
     }
 }
+
+https://github.com/ReinBentdal/styled_widget
+
+class ActionsRow extends StatelessWidget {
+  Widget _buildActionItem(String name, IconData icon) {
+    final Widget actionIcon = Icon(icon, size: 20, color: Color(0xFF42526F))
+        .alignment(Alignment.center)
+        .ripple()
+        .constrained(width: 50, height: 50)
+        .backgroundColor(Color(0xfff6f5f8))
+        .clipOval()
+        .padding(bottom: 5);
+
+    final Widget actionText = Text(
+      name,
+      style: TextStyle(
+        color: Colors.black.withOpacity(0.8),
+        fontSize: 12,
+      ),
+    );
+
+    return <Widget>[
+      actionIcon,
+      actionText,
+    ].toColumn().padding(vertical: 20);
+  }
+
+  @override
+  Widget build(BuildContext context) => <Widget>[
+        _buildActionItem('Wallet', Icons.attach_money),
+        _buildActionItem('Delivery', Icons.card_giftcard),
+        _buildActionItem('Message', Icons.message),
+        _buildActionItem('Service', Icons.room_service),
+      ].toRow(mainAxisAlignment: MainAxisAlignment.spaceAround);
+}
